@@ -1,0 +1,767 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>Untitled Document</title>
+</head>
+<style>
+#customers {
+	font-family: Arial;
+	border-collapse: collapse;
+	width: 100%;
+	text-align: center;
+	font-size: 12px;
+	
+}
+
+#customers td, #customers th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+#customers td{
+  border: 1px solid #ddd;
+  padding: 8px;
+  font-size:11px;
+  word-wrap: break-word;
+}
+
+
+#customers tr:hover {
+
+background: #eee;
+
+}
+
+
+
+#customers th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #4CAF50;
+  color: white;
+  text-align:center;
+}
+
+body {
+  font-family: "Lato", sans-serif;
+}
+
+.sidebar {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: #CCC;
+  overflow-x: hidden;
+  transition: 0.5s;
+  padding-top: 60px;
+}
+
+.sidebar a {
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 17px;
+  color: #818181;
+  display: block;
+  transition: 0.3s;
+}
+
+.sidebar a:hover {
+  color: #f1f1f1;
+}
+
+.sidebar .closebtn {
+  position: absolute;
+  top: 0;
+  right: 25px;
+  font-size: 36px;
+  margin-left: 50px;
+}
+
+.openbtn {
+  font-size: 20px;
+  cursor: pointer;
+  background-color: #111;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+}
+
+.openbtn:hover {
+  background-color: #444;
+}
+
+#main {
+  transition: margin-left .5s;
+  padding: 16px;
+}
+
+/* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
+@media screen and (max-height: 450px) {
+  .sidebar {padding-top: 15px;}
+  .sidebar a {font-size: 18px;}
+}
+.one-edge-shadow {
+	-webkit-box-shadow: 0 8px 6px -6px  #999999;
+	   -moz-box-shadow: 0 8px 6px -6px #999999;
+	        box-shadow: 0 8px 6px -6px #999999;
+}
+.c1 {
+	text-align: right;
+}
+.t1 {
+	height: auto;
+	width: auto;
+}
+.f2 {
+	font-size: 12px;
+}
+.f2 {
+	font-size: 10px;
+}
+.f3 {
+	text-align: right;
+}
+.f3 {
+	font-size: 10px;
+}
+.f3 {
+	font-size: 11px;
+}
+.f3 {
+	font-family: Calibri;
+	font-size: 14px;
+}
+.NEW {
+	text-align: right;
+}
+#loader {
+  border: 16px solid #f3f3f3;
+  border-radius: 100%;
+  border-top: 16px solid blue;
+  border-bottom: 16px solid blue;
+  width: 10px;
+  height: 10px;
+  -webkit-animation: spin 2s linear infinite;
+  animation: spin 2s linear infinite;
+  visibility:hidden;
+}
+@-webkit-keyframes spin 
+{
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+  @keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+.loader2 {
+  border: 16px solid #f3f3f3;
+  border-radius: 50%;
+  border-top: 16px solid #3498db;
+  width: 120px;
+  height: 120px;
+  -webkit-animation: spin 2s linear infinite; /* Safari */
+  animation: spin 2s linear infinite;
+  visibility:hidden;
+}
+
+/* Safari */
+@-webkit-keyframes spin {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+.rcorners2 {
+  border-radius: 10px;
+  border: 2px solid  #E2B706;
+  background-color:#FEE57E;
+  padding: 20px;
+  width: 400px;
+  height: 34px;
+  font-family:Arial, Helvetica, sans-serif;
+  font-size:15px;
+  alignment-adjust:central;
+  position:absolute;
+  top:45%;
+  left:35%;
+ box-shadow: 0 0 40px rgba(0,0,0,0.6);
+-moz-box-shadow: 0 0 40px rgba(0,0,0,0.6);
+-webkit-box-shadow: 0 0 40px rgba(0,0,0,0.6);
+-o-box-shadow: 0 0 40px rgba(0,0,0,0.6);
+visibility:hidden;
+}
+.rcorners2 div {
+	color: #333;
+}
+.rcorners3 {
+  border-radius: 10px;
+  border: 2px solid  #E2B706;
+  background-color:#FEE57E;
+  padding: 20px;
+  width: 400px;
+  height: 20px;
+  font-family:Arial, Helvetica, sans-serif;
+  font-size:15px;
+  alignment-adjust:central;
+  position:absolute;
+  top:45%;
+  left:35%;
+ box-shadow: 0 0 40px rgba(0,0,0,0.6);
+-moz-box-shadow: 0 0 40px rgba(0,0,0,0.6);
+-webkit-box-shadow: 0 0 40px rgba(0,0,0,0.6);
+-o-box-shadow: 0 0 40px rgba(0,0,0,0.6);
+visibility:hidden;
+}
+.rcorners3 div {
+	color: #333;
+}
+
+.rcorners4 {
+  border-radius: 10px;
+  border: 2px solid  #E2B706;
+  background-color:#FEE57E;
+  padding: 20px;
+  width: 400px;
+  height: 20px;
+  font-family:Arial, Helvetica, sans-serif;
+  font-size:15px;
+  alignment-adjust:central;
+  position:absolute;
+  top:45%;
+  left:35%;
+ box-shadow: 0 0 40px rgba(0,0,0,0.6);
+-moz-box-shadow: 0 0 40px rgba(0,0,0,0.6);
+-webkit-box-shadow: 0 0 40px rgba(0,0,0,0.6);
+-o-box-shadow: 0 0 40px rgba(0,0,0,0.6);
+visibility:hidden;
+}
+.rcorners3 div {
+	color: #333;
+}
+.rcorners5 {
+  border-radius: 10px;
+  border: 2px solid  #E2B706;
+  background-color:#FEE57E;
+  padding: 20px;
+  width: 400px;
+  height: 20px;
+  font-family:Arial, Helvetica, sans-serif;
+  font-size:15px;
+  alignment-adjust:central;
+  position:absolute;
+  top:45%;
+  left:35%;
+ box-shadow: 0 0 40px rgba(0,0,0,0.6);
+-moz-box-shadow: 0 0 40px rgba(0,0,0,0.6);
+-webkit-box-shadow: 0 0 40px rgba(0,0,0,0.6);
+-o-box-shadow: 0 0 40px rgba(0,0,0,0.6);
+visibility:HIDDEN;
+}
+.rcorners3 div {
+	color: #333;
+}
+.QQ {
+	color: #F00;
+}
+.W {
+	color: #F00;
+}
+</style>
+<script>
+function openNav() 
+{
+  document.getElementById("mySidebar").style.width = "250px";
+  document.getElementById("main").style.marginLeft = "250px";
+}
+
+function closeNav() 
+{
+  document.getElementById("mySidebar").style.width = "0";
+  document.getElementById("main").style.marginLeft= "0";
+}
+function pendingcal(total,updated,pending)
+{
+
+var tot= document.getElementById(total).value;
+var updated= document.getElementById(updated).value;
+
+var pend=tot-updated;
+
+document.getElementById(pending).value=pend;
+
+
+
+
+
+
+}
+</script>
+<body>
+<div id="mySidebar" class="sidebar">
+  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
+  <a href="#">HOME</a><br />
+  <a href="view.html">VIEW APPROVALS</a><br />
+  <a href="viewpending.html">PENDING APPROVALS</a><br />
+  <a href="reminder.html">REMINDER</a><br />
+  <a href="reports.html">REPORTS</a>
+</div>
+<div style=" height: 117px; width:100%" class="one-edge-shadow">
+  <table width="100%" height="117" border="0" style="height: inherit; text-align: right; font-family: 'RobotoCondensed Regular'; font-size: 14px;">
+    <tr>
+      <td width="10" height="113">&nbsp;</td>
+      <td width="242" style="text-align: center; font-family: Arial;"><div align="left"><img  src="IIB-logo-small.png" width="242" height="65" onclick="openNav()" /></div></td>
+      <td width="238" style="text-align: center">&nbsp;</td>
+      <td width="83" style="text-align: center">&nbsp;</td>
+      <td width="111" style="text-align: center">&nbsp;</td>
+      <td width="68" bgcolor="#FFFFFF"><div align="center"></div></td>
+      <td width="68" bgcolor="#FFFFFF"><div align="center"></div></td>
+      <td width="463" bgcolor="#FFFFFF"><img  src="Skill-_-NSDC-Logo-SMALL22.jpg" width="208" height="93" /></td>
+    </tr>
+  </table>
+   
+  <table width="100%" border="1" style=" border-collapse: collapse;" id="customers">
+  <tr>
+    <th width="2%" rowspan="2" bgcolor="#006600"><div align="center">SL</div></th>
+    <th width="15%" rowspan="2" bgcolor="#006600"><div align="center">NAME OF DIVISION </div></th>
+    <th width="12%" rowspan="2" bgcolor="#006600"><div align="center">NAME OF AUTHORITY </div></th>
+    <th height="37" colspan="3" bgcolor="#006600"><div align="center">PUBLISHING RECORDS PUBLISHING STATUS </div></th>
+    <th width="26%" rowspan="2" bgcolor="#006600"><div align="center">REMARKS</div></th>
+    <th width="14%" rowspan="2" bgcolor="#006600"><div align="center">T.A.T TO FINISH </div></th>
+  </tr>
+  <tr>
+    <th width="12%" bgcolor="#006600"><div align="center">TOTAL</div></th>
+    <th width="11%" height="37" bgcolor="#006600"><div align="center">PUBLISHED</div></th>
+    <th width="8%" bgcolor="#006600"><div align="center">PENDING</div></th>
+    </tr>
+  <tr>
+    <td height="38"><div align="center">1</div></td>
+    <td>ACADEMIC DIVISION </td>
+    <td><div align="center">BINCY RAJU </div></td>
+    <td><div align="center">
+      <input name="textfield" type="text" style="width:90%; height:90%; text-align:center; border-collapse: collapse;" value="10" id="a1" />
+    </div></td>
+    <td><div align="center">
+      <input name="textfield3" type="text" style="width:90%; height:90%; text-align:center; border-collapse: collapse; " id="b1" onchange="pendingcal('a1','b1','c1')" />
+    </div></td>
+    <td><div align="center">
+      <input name="textfield326" type="text" style="width:90%; height:90%; text-align:center; border-collapse: collapse;" id="c1" />
+    </div></td>
+    <td><textarea name="textfield351" rows="3" style="width:90%; height:90%; text-align:center; border-collapse: collapse;"></textarea></td>
+    <td><input name="textfield3262" type="text" style="width:90%; height:90%; text-align:center; border-collapse: collapse;" /></td>
+  </tr>
+  <tr>
+    <td height="38"><div align="center">2</div></td>
+    <td>ACCOUNTS DIVISION </td>
+    <td rowspan="2"><div align="center">ASWATHI VIPIN</div></td>
+    <td rowspan="2"><div align="center">
+        <input name="textfield2" type="text" style="width:90%; height:90%; text-align:center;" value="1" id="a2" />
+      </div>
+        <div align="center"></div></td>
+    <td rowspan="2"><div align="center">
+      <input name="textfield32" type="text" style="width:90%; height:90%; text-align:center; border-collapse: collapse;"id="b2" onchange="pendingcal('a2','b2','c2')" />
+    </div>
+        <div align="center"></div></td>
+    <td rowspan="2"><div align="center">
+      <input name="textfield327" type="text" style="width:90%; height:90%; text-align:center; border-collapse: collapse;" id="c2"  />
+    </div>      <div align="center"></div></td>
+    <td rowspan="2"><textarea name="textarea" rows="3" style="width:90%; height:90%; text-align:center; border-collapse: collapse;"></textarea>
+    <div align="center"></div></td>
+    <td rowspan="2"><input name="textfield3263" type="text" style="width:90%; height:90%; text-align:center; border-collapse: collapse;" />
+    <div align="center"></div></td>
+  </tr>
+  <tr>
+    <td height="38"><div align="center">3</div></td>
+    <td>ACCOUNTS AUDIT DIVISION</td>
+    </tr>
+  <tr>
+    <td height="35"><div align="center">4</div></td>
+    <td>ATA DIVISION </td>
+    <td><div align="center">REHANA BHASKARAN</div></td>
+    <td><div align="center">
+        <input name="textfield4" type="text" style="width:90%; height:90%; text-align:center;" value="5" id="a3" />
+    </div></td>
+    <td><div align="center">
+      <input name="textfield33" type="text" style="width:90%; height:90%; text-align:center; border-collapse: collapse;" id="b3" onchange="pendingcal('a3','b3','c3')"/>
+    </div></td>
+    <td><div align="center">
+      <input name="textfield328" type="text" style="width:90%; height:90%; text-align:center; border-collapse: collapse;" id="c3"  />
+    </div></td>
+    <td><textarea name="textarea2" rows="3" style="width:90%; height:90%; text-align:center; border-collapse: collapse;"></textarea></td>
+    <td><input name="textfield3264" type="text" style="width:90%; height:90%; text-align:center; border-collapse: collapse;" /></td>
+  </tr>
+  <tr>
+    <td height="32"><div align="center">5</div></td>
+    <td>EXAM &amp; CERTIFICATION DIVISION </td>
+    <td><div align="center">SARATH C R</div></td>
+    <td><div align="center">
+        <input name="textfield5" type="text" style="width:90%; height:90%; text-align:center;" value="1" id="a4" />
+    </div></td>
+    <td><div align="center">
+      <input name="textfield34" type="text" style="width:90%; height:90%; text-align:center; border-collapse: collapse;" id="b4" onchange="pendingcal('a4','b4','c4')" />
+    </div></td>
+    <td><div align="center">
+      <input name="textfield329" type="text" style="width:90%; height:90%; text-align:center; border-collapse: collapse;" id="c4"  />
+    </div></td>
+    <td><textarea name="textarea3" rows="3" style="width:90%; height:90%; text-align:center; border-collapse: collapse;"></textarea></td>
+    <td><input name="textfield3265" type="text" style="width:90%; height:90%; text-align:center; border-collapse: collapse;" /></td>
+  </tr>
+  <tr>
+    <td height="35"><div align="center">6</div></td>
+    <td>EXPANSION DIVISION</td>
+    <td><div align="center">ANIL KUMAR</div></td>
+    <td><div align="center">
+        <input name="textfield6" type="text" style="width:90%; height:90%; text-align:center;" value="2" id="a5"/>
+    </div></td>
+    <td><div align="center">
+      <input name="textfield35" type="text" style="width:90%; height:90%; text-align:center; border-collapse: collapse;" id="b5" onchange="pendingcal('a5','b5','c5')" />
+    </div></td>
+    <td><div align="center">
+      <input name="textfield330" type="text" style="width:90%; height:90%; text-align:center; border-collapse: collapse;" id="c5"  />
+    </div></td>
+    <td><textarea name="textarea4" rows="3" style="width:90%; height:90%; text-align:center; border-collapse: collapse;"></textarea></td>
+    <td><input name="textfield3266" type="text" style="width:90%; height:90%; text-align:center; border-collapse: collapse;" /></td>
+  </tr>
+  <tr>
+    <td height="35"><div align="center">7</div></td>
+    <td>FINANCE AUDIT DIVISION</td>
+    <td><div align="center">NITHYA</div></td>
+    <td><div align="center">
+        <input name="textfield7" type="text" style="width:90%; height:90%; text-align:center;" value="7" id="a6" />
+    </div></td>
+    <td><div align="center">
+      <input name="textfield36" type="text" style="width:90%; height:90%; text-align:center; border-collapse: collapse;" id="b6" onchange="pendingcal('a6','b6','c6')" />
+    </div></td>
+    <td><div align="center">
+      <input name="textfield331" type="text" style="width:90%; height:90%; text-align:center; border-collapse: collapse;" id="c6"  />
+    </div></td>
+    <td><textarea name="textarea5" rows="3" style="width:90%; height:90%; text-align:center; border-collapse: collapse;"></textarea></td>
+    <td><input name="textfield3267" type="text" style="width:90%; height:90%; text-align:center; border-collapse: collapse;" /></td>
+  </tr>
+  <tr>
+    <td height="35"><div align="center">8</div></td>
+    <td>HR DIVISION</td>
+    <td><div align="center">AMRUTHA MENON</div></td>
+    <td><div align="center">
+        <input name="textfield8" type="text" style="width:90%; height:90%; text-align:center;" value="2" id="a7" />
+    </div></td>
+    <td><div align="center">
+      <input name="textfield37" type="text" style="width:90%; height:90%; text-align:center; border-collapse: collapse;" id="b7" onchange="pendingcal('a7','b7','c7')" />
+    </div></td>
+    <td><div align="center">
+      <input name="textfield332" type="text" style="width:90%; height:90%; text-align:center; border-collapse: collapse;" id="c7" />
+    </div></td>
+    <td><textarea name="textarea6" rows="3" style="width:90%; height:90%; text-align:center; border-collapse: collapse;"></textarea></td>
+    <td><input name="textfield3268" type="text" style="width:90%; height:90%; text-align:center; border-collapse: collapse;" /></td>
+  </tr>
+  <tr>
+    <td height="36"><div align="center">9</div></td>
+    <td>MARKETING &amp; MOBILISATION DIVISION</td>
+    <td><div align="center">SNEHA</div></td>
+    <td><div align="center">
+        <input name="textfield9" type="text" style="width:90%; height:90%; text-align:center;" value="1" id="a8" />
+    </div></td>
+    <td><div align="center">
+      <input name="textfield38" type="text" style="width:90%; height:90%; text-align:center; border-collapse: collapse;" id="b8" onchange="pendingcal('a8','b8','c8')" />
+    </div></td>
+    <td><div align="center">
+      <input name="textfield333" type="text" style="width:90%; height:90%; text-align:center; border-collapse: collapse;" id="c8"  />
+    </div></td>
+    <td><textarea name="textarea7" rows="3" style="width:90%; height:90%; text-align:center; border-collapse: collapse;"></textarea></td>
+    <td><input name="textfield3269" type="text" style="width:90%; height:90%; text-align:center; border-collapse: collapse;" /></td>
+  </tr>
+  <tr>
+    <td height="32"><div align="center">10</div></td>
+    <td>MIS DIVISION</td>
+    <td><div align="center">BADUSHA </div></td>
+    <td><div align="center">
+        <input name="textfield10" type="text" style="width:90%; height:90%; text-align:center;" value="1" id="a9" />
+    </div></td>
+    <td><div align="center">
+      <input name="textfield39" type="text" style="width:90%; height:90%; text-align:center; border-collapse: collapse;" id="b9" onchange="pendingcal('a9','b9','c9')" />
+    </div></td>
+    <td><div align="center">
+      <input name="textfield334" type="text" style="width:90%; height:90%; text-align:center; border-collapse: collapse;" id="c9" />
+    </div></td>
+    <td><textarea name="textarea8" rows="3" style="width:90%; height:90%; text-align:center; border-collapse: collapse;"></textarea></td>
+    <td><input name="textfield32610" type="text" style="width:90%; height:90%; text-align:center; border-collapse: collapse;" /></td>
+  </tr>
+  <tr>
+    <td height="33"><div align="center">11</div></td>
+    <td>PLACEMENT DIVISION</td>
+    <td><div align="center">ANARGA BABY</div></td>
+    <td><div align="center">
+        <input name="textfield11" type="text" style="width:90%; height:90%; text-align:center;" value="2" id="a10" />
+    </div></td>
+    <td><div align="center">
+      <input name="textfield310" type="text" style="width:90%; height:90%; text-align:center; border-collapse: collapse;" id="b10" onchange="pendingcal('a10','b10','c10')" />
+    </div></td>
+    <td><div align="center">
+      <input name="textfield335" type="text" style="width:90%; height:90%; text-align:center; border-collapse: collapse;" id="c10"  />
+    </div></td>
+    <td><textarea name="textarea9" rows="3" style="width:90%; height:90%; text-align:center; border-collapse: collapse;"></textarea></td>
+    <td><input name="textfield32611" type="text" style="width:90%; height:90%; text-align:center; border-collapse: collapse;" /></td>
+  </tr>
+  <tr>
+    <td height="36"><div align="center">12</div></td>
+    <td>FINANCE CO-ORDINATION DIVISION</td>
+    <td><div align="center">TINCY </div></td>
+    <td><div align="center">
+        <input name="textfield12" type="text" style="width:90%; height:90%; text-align:center;" value="2" id="a11"/>
+    </div></td>
+    <td><div align="center">
+      <input name="textfield311" type="text" style="width:90%; height:90%; text-align:center; border-collapse: collapse;" id="b11" onchange="pendingcal('a11','b11','c11')"/>
+    </div></td>
+    <td><div align="center">
+      <input name="textfield336" type="text" style="width:90%; height:90%; text-align:center; border-collapse: collapse;" id="c11" />
+    </div></td>
+    <td><textarea name="textarea10" rows="3" style="width:90%; height:90%; text-align:center; border-collapse: collapse;"></textarea></td>
+    <td><input name="textfield32612" type="text" style="width:90%; height:90%; text-align:center; border-collapse: collapse;" /></td>
+  </tr>
+  <tr>
+    <td height="34"><div align="center">13</div></td>
+    <td>PROCESS AUDIT DIVISION</td>
+    <td><div align="center">SARITHA </div></td>
+    <td><div align="center">
+        <input name="textfield13" type="text" style="width:90%; height:90%; text-align:center;" value="5" id="a12" />
+    </div></td>
+    <td><div align="center">
+      <input name="textfield312" type="text" style="width:90%; height:90%; text-align:center; border-collapse: collapse;" id="b12" onchange="pendingcal('a12','b12','c12')" />
+    </div></td>
+    <td><div align="center">
+      <input name="textfield337" type="text" style="width:90%; height:90%; text-align:center; border-collapse: collapse;" id="c12"  />
+    </div></td>
+    <td><textarea name="textarea11" rows="3" style="width:90%; height:90%; text-align:center; border-collapse: collapse;"></textarea></td>
+    <td><input name="textfield32613" type="text" style="width:90%; height:90%; text-align:center; border-collapse: collapse;" /></td>
+  </tr>
+  <tr>
+    <td height="31"><div align="center">14</div></td>
+    <td>PROJECT DEVELOPMENT DIVISION</td>
+    <td><div align="center">UMESH </div></td>
+    <td><div align="center">
+        <input name="textfield14" type="text" style="width:90%; height:90%; text-align:center;" value="7" id="a13"/>
+    </div></td>
+    <td><div align="center">
+      <input name="textfield313" type="text" style="width:90%; height:90%; text-align:center; border-collapse: collapse;" id="b13" onchange="pendingcal('a13','b13','c13')" />
+    </div></td>
+    <td><div align="center">
+      <input name="textfield338" type="text" style="width:90%; height:90%; text-align:center; border-collapse: collapse;" id="c13"  />
+    </div></td>
+    <td><textarea name="textarea12" rows="3" style="width:90%; height:90%; text-align:center; border-collapse: collapse;"></textarea></td>
+    <td><input name="textfield32614" type="text" style="width:90%; height:90%; text-align:center; border-collapse: collapse;" /></td>
+  </tr>
+  <tr>
+    <td rowspan="5"><div align="center">15</div></td>
+    <td rowspan="5"><div align="center">PROJECT EXECUTION DIVISION<br />
+      ( PROJECT MANAGERS ) </div></td>
+    <td height="36"><div align="center">CCEK SAJITHA</div></td>
+    <td><div align="center">
+        <input name="textfield15" type="text" style="width:90%; height:90%; text-align:center;" value="4" id="a14"/>
+    </div></td>
+    <td><div align="center">
+      <input name="textfield314" type="text" style="width:90%; height:90%; text-align:center; border-collapse: collapse;" id="b14" onchange="pendingcal('a14','b14','c14')" />
+    </div></td>
+    <td><div align="center">
+      <input name="textfield339" type="text" style="width:90%; height:90%; text-align:center; border-collapse: collapse;" id="c14" />
+    </div></td>
+    <td><textarea name="textarea13" rows="3" style="width:90%; height:90%; text-align:center; border-collapse: collapse;"></textarea></td>
+    <td><input name="textfield32615" type="text" style="width:90%; height:90%; text-align:center; border-collapse: collapse;" /></td>
+  </tr>
+  <tr>
+    <td height="34"><div align="center">DB  - NAVANEETH</div></td>
+    <td><div align="center">
+        <input name="textfield16" type="text" style="width:90%; height:90%; text-align:center;" value="2"id="a15" />
+    </div></td>
+    <td><div align="center">
+      <input name="textfield315" type="text" style="width:90%; height:90%; text-align:center; border-collapse: collapse;" id="b15" onchange="pendingcal('a15','b15','c15')" />
+    </div></td>
+    <td><div align="center">
+      <input name="textfield340" type="text" style="width:90%; height:90%; text-align:center; border-collapse: collapse;"  id="c15" />
+    </div></td>
+    <td><textarea name="textarea14" rows="3" style="width:90%; height:90%; text-align:center; border-collapse: collapse;"></textarea></td>
+    <td><input name="textfield32616" type="text" style="width:90%; height:90%; text-align:center; border-collapse: collapse;" /></td>
+  </tr>
+  <tr>
+    <td height="36"><div align="center">DDUGKY-DHANESH</div></td>
+    <td><div align="center">
+        <input name="textfield17" type="text" style="width:90%; height:90%; text-align:center;" value="1"id="a16" />
+    </div></td>
+    <td><div align="center">
+      <input name="textfield316" type="text" style="width:90%; height:90%; text-align:center; border-collapse: collapse;" id="b16" onchange="pendingcal('a16','b16','c16')" />
+    </div></td>
+    <td><div align="center">
+      <input name="textfield341" type="text" style="width:90%; height:90%; text-align:center; border-collapse: collapse;" id="c16"  />
+    </div></td>
+    <td><textarea name="textarea15" rows="3" style="width:90%; height:90%; text-align:center; border-collapse: collapse;"></textarea></td>
+    <td><input name="textfield32617" type="text" style="width:90%; height:90%; text-align:center; border-collapse: collapse;" /></td>
+  </tr>
+  <tr>
+    <td height="34"><div align="center">KELTRON-AJITH</div></td>
+    <td><div align="center">
+        <input name="textfield18" type="text" style="width:90%; height:90%; text-align:center;" value="5" id="a17"/>
+    </div></td>
+    <td><div align="center">
+      <input name="textfield317" type="text" style="width:90%; height:90%; text-align:center; border-collapse: collapse;" id="b17" onchange="pendingcal('a17','b17','c17')" />
+    </div></td>
+    <td><div align="center">
+      <input name="textfield342" type="text" style="width:90%; height:90%; text-align:center; border-collapse: collapse;" id="c17"  />
+    </div></td>
+    <td><textarea name="textarea16" rows="3" style="width:90%; height:90%; text-align:center; border-collapse: collapse;"></textarea></td>
+    <td><input name="textfield32618" type="text" style="width:90%; height:90%; text-align:center; border-collapse: collapse;" /></td>
+  </tr>
+  <tr>
+    <td height="35"><div align="center">SRC-JAIL-NAVANEETH</div></td>
+    <td><div align="center">
+        <input name="textfield19" type="text" style="width:90%; height:90%; text-align:center;" value="1" id="a18"/>
+    </div></td>
+    <td><div align="center">
+      <input name="textfield318" type="text" style="width:90%; height:90%; text-align:center; border-collapse: collapse;" id="b18" onchange="pendingcal('a18','b18','c18')" />
+    </div></td>
+    <td><div align="center">
+      <input name="textfield343" type="text" style="width:90%; height:90%; text-align:center; border-collapse: collapse;" id="c18" />
+    </div></td>
+    <td><textarea name="textarea17" rows="3" style="width:90%; height:90%; text-align:center; border-collapse: collapse;"></textarea></td>
+    <td><input name="textfield32619" type="text" style="width:90%; height:90%; text-align:center; border-collapse: collapse;" /></td>
+  </tr>
+  <tr>
+    <td height="38"><div align="center">16</div></td>
+    <td>PROJECT  CO-ORDINATION DIVISION</td>
+    <td><div align="center">ANJU NITTO</div></td>
+    <td><div align="center">
+        <input name="textfield20" type="text" style="width:90%; height:90%; text-align:center;" value="2" id="a19"/>
+    </div></td>
+    <td><div align="center">
+      <input name="textfield319" type="text" style="width:90%; height:90%; text-align:center; border-collapse: collapse;" id="b19" onchange="pendingcal('a19','b19','c19')" />
+    </div></td>
+    <td><div align="center">
+      <input name="textfield344" type="text" style="width:90%; height:90%; text-align:center; border-collapse: collapse;" id="c19"  />
+    </div></td>
+    <td><textarea name="textarea18" rows="3" style="width:90%; height:90%; text-align:center; border-collapse: collapse;"></textarea></td>
+    <td><input name="textfield32620" type="text" style="width:90%; height:90%; text-align:center; border-collapse: collapse;" /></td>
+  </tr>
+  <tr>
+    <td height="36"><div align="center">17</div></td>
+    <td>R &amp; R DIVISION</td>
+    <td><div align="center">VISHNU</div></td>
+    <td><div align="center">
+        <input name="textfield21" type="text" style="width:90%; height:90%; text-align:center;" value="3" id="a20" />
+    </div></td>
+    <td><div align="center">
+      <input name="textfield320" type="text" style="width:90%; height:90%; text-align:center; border-collapse: collapse;" id="b20" onchange="pendingcal('a20','b20','c20')" />
+    </div></td>
+    <td><div align="center">
+      <input name="textfield345" type="text" style="width:90%; height:90%; text-align:center; border-collapse: collapse;" id="c20"  />
+    </div></td>
+    <td><textarea name="textarea19" rows="3" style="width:90%; height:90%; text-align:center; border-collapse: collapse;"></textarea></td>
+    <td><input name="textfield32621" type="text" style="width:90%; height:90%; text-align:center; border-collapse: collapse;" /></td>
+  </tr>
+  <tr>
+    <td height="35"><div align="center">18</div></td>
+    <td>RDT DIVISION</td>
+    <td rowspan="3"><div align="center">ALI AKBAR</div></td>
+    <td><div align="center">
+        <input name="textfield22" type="text" style="width:90%; height:90%; text-align:center;" value="1" id="a21"/>
+    </div></td>
+    <td><div align="center">
+      <input name="textfield321" type="text" style="width:90%; height:90%; text-align:center; border-collapse: collapse;" id="b21" onchange="pendingcal('a21','b21','c21')" />
+    </div></td>
+    <td><div align="center">
+      <input name="textfield346" type="text" style="width:90%; height:90%; text-align:center; border-collapse: collapse;" id="c21" />
+    </div></td>
+    <td><textarea name="textarea20" rows="3" style="width:90%; height:90%; text-align:center; border-collapse: collapse;"></textarea></td>
+    <td><input name="textfield32622" type="text" style="width:90%; height:90%; text-align:center; border-collapse: collapse;" /></td>
+  </tr>
+  <tr>
+    <td height="36"><div align="center">19</div></td>
+    <td>STATE CO-ORDINATION DIVISION</td>
+    <td><div align="center">
+        <input name="textfield23" type="text" style="width:90%; height:90%; text-align:center;" value="1" id="a22"/>
+    </div></td>
+    <td><div align="center">
+      <input name="textfield322" type="text" style="width:90%; height:90%; text-align:center; border-collapse: collapse;" id="b22" onchange="pendingcal('a22','b22','c22')" />
+    </div></td>
+    <td><div align="center">
+      <input name="textfield347" type="text" style="width:90%; height:90%; text-align:center; border-collapse: collapse;" id="c22"  />
+    </div></td>
+    <td><textarea name="textarea21" rows="3" style="width:90%; height:90%; text-align:center; border-collapse: collapse;"></textarea></td>
+    <td><input name="textfield32623" type="text" style="width:90%; height:90%; text-align:center; border-collapse: collapse;" /></td>
+  </tr>
+  <tr>
+    <td height="39"><div align="center">20</div></td>
+    <td>SYSTEM ADMIN DIVISION</td>
+    <td><div align="center">
+        <input name="textfield24" type="text" style="width:90%; height:90%; text-align:center;" value="1" id="a23" />
+    </div></td>
+    <td><div align="center">
+      <input name="textfield323" type="text" style="width:90%; height:90%; text-align:center; border-collapse: collapse;" id="b23" onchange="pendingcal('a23','b23','c23')" />
+    </div></td>
+    <td><div align="center">
+      <input name="textfield348" type="text" style="width:90%; height:90%; text-align:center; border-collapse: collapse;" id="c23"  />
+    </div></td>
+    <td><textarea name="textarea22" rows="3" style="width:90%; height:90%; text-align:center; border-collapse: collapse;"></textarea></td>
+    <td><input name="textfield32624" type="text" style="width:90%; height:90%; text-align:center; border-collapse: collapse;" /></td>
+  </tr>
+  <tr>
+    <td height="37"><div align="center">21</div></td>
+    <td>CONTENT DEVELOPMENT DIVISION</td>
+    <td><div align="center">AMRUTHA MENON</div></td>
+    <td><div align="center">
+        <input name="textfield25" type="text" style="width:90%; height:90%; text-align:center;" value="2" id="24" />
+    </div></td>
+    <td><div align="center">
+      <input name="textfield324" type="text" style="width:90%; height:90%; text-align:center; border-collapse: collapse;" id="b24" onchange="pendingcal('a24','b42','c24')" />
+    </div></td>
+    <td><div align="center">
+      <input name="textfield349" type="text" style="width:90%; height:90%; text-align:center; border-collapse: collapse;" id="c24" />
+    </div></td>
+    <td><textarea name="textarea23" rows="3" style="width:90%; height:90%; text-align:center; border-collapse: collapse;"></textarea></td>
+    <td><input name="textfield32625" type="text" style="width:90%; height:90%; text-align:center; border-collapse: collapse;" /></td>
+  </tr>
+  <tr>
+    <td height="38"><div align="center">22</div></td>
+    <td>LEGAL DIVISION</td>
+    <td><div align="center">PROCESS AUDIT DIVISION</div></td>
+    <td><div align="center">
+        <input name="textfield26" type="text" style="width:90%; height:90%; text-align:center;" value="1"  id="a25"/>
+    </div></td>
+    <td><div align="center">
+      <input name="textfield325" type="text" style="width:90%; height:90%; text-align:center; border-collapse: collapse;" id="b25" onchange="pendingcal('a25','b25','c25')" />
+    </div></td>
+    <td><div align="center">
+      <input name="textfield350" type="text" style="width:90%; height:90%; text-align:center; border-collapse: collapse;" id="c25"  />
+    </div></td>
+    <td><textarea name="textarea24" rows="3" style="width:90%; height:90%; text-align:center; border-collapse: collapse;"></textarea></td>
+    <td><input name="textfield32626" type="text" style="width:90%; height:90%; text-align:center; border-collapse: collapse;" /></td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+  </tr>
+</table>
+
+</div>
+</body>
+</html>

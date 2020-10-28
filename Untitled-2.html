@@ -1,0 +1,189 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+<title>IIB WorkBench</title>
+<link href="RobotoCondensed_Regular/stylesheet.css" rel="stylesheet" type="text/css" />
+<style>
+.one-edge-shadow {
+	-webkit-box-shadow: 0 8px 6px -6px  #999999;
+	   -moz-box-shadow: 0 8px 6px -6px #999999;
+	        box-shadow: 0 8px 6px -6px #999999;
+}
+.c1 {
+	text-align: right;
+}
+.t1 {
+	height: auto;
+	width: auto;
+}
+.f2 {
+	font-size: 12px;
+}
+.f2 {
+	font-size: 10px;
+}
+.f3 {
+	text-align: right;
+}
+.f3 {
+	font-size: 10px;
+}
+.f3 {
+	font-size: 11px;
+}
+.f3 {
+	font-family: Calibri;
+}
+.NEW {
+	text-align: right;
+}
+</style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+<script>
+
+function addapproval()
+{
+	var a1=document.getElementById("date").value;
+	var a2=document.getElementById("ref").value;
+	var a3=document.getElementById("sub").value;
+	var a4=document.getElementById("status").value;
+	alert(a1,a2,a3,a4);
+	
+}
+  
+	
+  
+  </script>
+
+
+
+</head>
+
+<body>
+
+<div style=" height: 117px; width:100%" class="one-edge-shadow">
+  <table width="1329" height="117" border="0" style="height: inherit; text-align: right; font-family: 'RobotoCondensed Regular'; font-size: 14px;">
+    <tr>
+      <td width="242" height="113"><img src="IIB-logo-small.png" width="242" height="65" /></td>
+      <td width="20" style="text-align: center; font-family: Arial;">&nbsp;</td>
+      <td width="163" style="text-align: center">ADD APPROVAL</td>
+      <td width="158" style="text-align: center"><a href="pad_view (All).html" style="text-decoration: none;">VIEW APPROVALS</a></td>
+      <td width="162" style="text-align: center"><a href="viewforedit.html"  style="text-decoration: none;">EDIT APPROVAL</a></td>
+      <td width="558" bgcolor="#FFFFFF"><img src="Skill-&amp;-NSDC-Logo-SMALL22.jpg" width="208" height="93" /></td>
+    </tr>
+  </table>
+</div>
+<table width="1338" height="440" border="0">
+  <tr>
+    <td width="222">&nbsp;</td>
+    <td width="210">&nbsp;</td>
+    <td width="216">&nbsp;</td>
+    <td width="216">&nbsp;</td>
+    <td width="216">&nbsp;</td>
+    <td width="218">&nbsp;</td>
+  </tr>
+  <tr>
+    <td class="f3">Date</td>
+    <td><form id="form1" name="form1" method="post" action="">
+      <span class="a70">
+      <input name="date" type="date" class="a70" id="date" />
+      </span>
+    </form></td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td height="30" class="f3">Referance Number</td>
+    <td><label for="ref"></label>
+      <input type="text" id="ref" size="70" /></td>
+    <td height="30" class="f3">&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td height="73" class="f3">Subject</td>
+    <td><form id="form2" name="form2" method="post" action="">
+      <textarea id="sub" cols="50" rows="8"></textarea>
+    </form></td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td height="33" class="f3">Designation</td>
+    <td><form id="desig" method="post" action="">
+      <select name="desi" id="desi">
+        <option value="WORK STARTED">WORK STARTED</option>
+        <option value="WORK PROGRESSING">WORK PROGRESSING</option>
+        <option value="WORK POSTPONED">WORK POSTPONED</option>
+        <option value="WORK FINISHED">WORK FINISHED</option>
+        <option value="APPROVAL PENDING">APPROVAL PENDING </option>
+        <option value="WORK NOT STARTED">WORK NOT STARTED</option>
+      </select>
+    </form></td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td height="33" class="f3">&nbsp;</td>
+    <td class="left"><button onclick="addapproval()">Add Approval</button></td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td height="30" class="f3">&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td height="49" class="f3">&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td class="f3">&nbsp;</td>
+    <td class="a70">&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td class="f3" id="eedate">&nbsp;</td>
+    <td>
+    <td>&nbsp;</td></td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td class="NEW">&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+  </tr>
+</table>
+
+
+
+</body>
+</html>

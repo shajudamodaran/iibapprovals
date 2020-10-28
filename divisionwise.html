@@ -1,0 +1,722 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+
+<script src="https://www.gstatic.com/firebasejs/7.1.0/firebase-app.js"></script>                                    
+<script src="https://www.gstatic.com/firebasejs/7.1.0/firebase-analytics.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.1.0/firebase-database.js"></script>
+
+
+
+<script>
+  // Your web app's Firebase configuration
+  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+  var firebaseConfig = {
+    apiKey: "AIzaSyBqKKW5tmNnEK0fPGWHoz45QMSxdtpz3zs",
+    authDomain: "iib-approvals.firebaseapp.com",
+    databaseURL: "https://iib-approvals.firebaseio.com",
+    projectId: "iib-approvals",
+    storageBucket: "iib-approvals.appspot.com",
+    messagingSenderId: "1076015233476",
+    appId: "1:1076015233476:web:686109e1a6fd5db7aa0c91",
+    measurementId: "G-DER514F176"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+ 
+</script>
+<title>IIB WorkBench</title>
+<link href="RobotoCondensed_Regular/stylesheet.css" rel="stylesheet" type="text/css" />
+<style>
+body {
+  font-family: "Lato", sans-serif;
+}
+
+.sidebar {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: #CCC;
+  overflow-x: hidden;
+  transition: 0.5s;
+  padding-top: 60px;
+}
+
+.sidebar a {
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 17px;
+  color: #818181;
+  display: block;
+  transition: 0.3s;
+}
+
+.sidebar a:hover {
+  color: #f1f1f1;
+}
+
+.sidebar .closebtn {
+  position: absolute;
+  top: 0;
+  right: 25px;
+  font-size: 36px;
+  margin-left: 50px;
+}
+
+.openbtn {
+  font-size: 20px;
+  cursor: pointer;
+  background-color: #111;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+}
+
+.openbtn:hover {
+  background-color: #444;
+}
+
+#main {
+  transition: margin-left .5s;
+  padding: 16px;
+}
+
+/* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
+@media screen and (max-height: 450px) {
+  .sidebar {padding-top: 15px;}
+  .sidebar a {font-size: 18px;}
+}
+.one-edge-shadow {
+	-webkit-box-shadow: 0 8px 6px -6px  #999999;
+	   -moz-box-shadow: 0 8px 6px -6px #999999;
+	        box-shadow: 0 8px 6px -6px #999999;
+}
+.c1 {
+	text-align: right;
+}
+.t1 {
+	height: auto;
+	width: auto;
+}
+.f2 {
+	font-size: 12px;
+}
+.f2 {
+	font-size: 10px;
+}
+.f3 {
+	text-align: right;
+}
+.f3 {
+	font-size: 10px;
+}
+.f3 {
+	font-size: 11px;
+}
+.f3 {
+	font-family: Calibri;
+}
+.NEW {
+	text-align: right;
+}
+
+#customers {
+	font-family: Arial;
+	border-collapse: collapse;
+	width: 100%;
+	text-align: center;
+	font-size: 12px;
+	
+}
+
+#customers td, #customers th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+#customers td{
+  border: 1px solid #ddd;
+  padding: 8px;
+  font-size:11px;
+  word-wrap: break-word;
+}
+#customers tr:nth-child(even){background-color: #f2f2f2;}
+
+#customers tr:hover {background-color: #ddd;}
+
+#customers th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #007dd2;
+  color: white;
+  text-align:center;
+}
+#loader {
+  border: 16px solid #f3f3f3;
+  border-radius: 100%;
+  border-top: 16px solid blue;
+  border-bottom: 16px solid blue;
+  width: 10px;
+  height: 10px;
+  -webkit-animation: spin 2s linear infinite;
+  animation: spin 2s linear infinite;
+  visibility:hidden;
+}
+@-webkit-keyframes spin 
+{
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+  @keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+.loader2 {
+  border: 16px solid #f3f3f3;
+  border-radius: 50%;
+  border-top: 16px solid #3498db;
+  width: 120px;
+  height: 120px;
+  -webkit-animation: spin 2s linear infinite; /* Safari */
+  animation: spin 2s linear infinite;
+  visibility:hidden;
+}
+
+/* Safari */
+@-webkit-keyframes spin {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+.rcorners2 {
+  border-radius: 10px;
+  border: 2px solid  #E2B706;
+  background-color:#FEE57E;
+  padding: 20px;
+  width: 400px;
+  height: 34px;
+  font-family:Arial, Helvetica, sans-serif;
+  font-size:15px;
+  alignment-adjust:central;
+  position:absolute;
+  top:45%;
+  left:35%;
+ box-shadow: 0 0 40px rgba(0,0,0,0.6);
+-moz-box-shadow: 0 0 40px rgba(0,0,0,0.6);
+-webkit-box-shadow: 0 0 40px rgba(0,0,0,0.6);
+-o-box-shadow: 0 0 40px rgba(0,0,0,0.6);
+visibility:hidden;
+}
+.rcorners2 div {
+	color: #333;
+}
+.select {
+  // A reset of styles, including removing the default dropdown arrow
+  appearance: none;
+  // Additional resets for further consistency
+  background-color: transparent;
+  border: none;
+  padding: 0 1em 0 0;
+  margin: 0;
+  width: 100%;
+  font-family: inherit;
+  font-size: inherit;
+  cursor: inherit;
+  line-height: inherit;
+}
+
+
+</style>
+<link href="css/stylish.css" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<script >
+
+var flag="";
+var rowc=0;
+var rowcc=0;
+onload=function hide() 
+{
+	document.getElementById("loading").style.visibility = "hidden";
+	//document.getElementById("loading2").style.visibility = "hidden";
+	getdata();
+		
+}
+
+function DeleteRows() {
+        var rowCounts = customers.rows.length;
+        for (var i = rowCounts - 1; i > 0; i--) {
+            customers.deleteRow(i);
+        }
+    }
+
+
+function getdata() 
+{
+		document.getElementById("loading").style.visibility = "visible";
+		//document.getElementById("loading2").style.visibility = "visible";
+		var s1=document.getElementById("desi").value;
+		var s2=document.getElementById("status").value;
+		
+		 var ref2 = firebase.database().ref('Approvals');
+ 
+ ref2.on("value", function(snapshot) 
+  {
+  
+ 			    var flagsl=1;
+				var table = document.getElementById("myTableData");
+				var count=0;
+				DeleteRows();
+  
+   snapshot.forEach(userSnapshot => 
+	  {
+	   var C1 =userSnapshot.val().Date1;
+	   var C4=userSnapshot.val().Designation;
+	   var C2=userSnapshot.val().Ref_Number;
+	   var C3=userSnapshot.val().subject;
+	   var C5 =userSnapshot.val().Current_Status;
+
+					 if(C4==s1&&C5==s2)
+							{
+							
+									count=count+1;
+									tr = customers.insertRow(-1);
+									var tabCell = tr.insertCell(-1);
+									tabCell.innerHTML =flagsl;
+									flagsl++;
+									tabCell = tr.insertCell(-1);
+									
+									var today0 = new Date(C1);
+									var dd = String(today0.getDate()).padStart(2, '0');
+									var mm = String(today0.getMonth() + 1).padStart(2, '0'); //January is 0!
+									var yyyy = today0.getFullYear();
+									var today1=""+dd+"/"+mm+"/"+yyyy+"";
+									
+									tabCell.innerHTML = today1;
+									tabCell = tr.insertCell(-1);
+									tabCell.innerHTML = C4;
+									tabCell = tr.insertCell(-1);
+
+									tabCell.innerHTML = C2;
+									tabCell = tr.insertCell(-1);
+									tabCell.innerHTML = C3;
+									tabCell = tr.insertCell(-1);
+									var agingvalue="";
+									
+									var today0 = new Date();
+									var dd = String(today0.getDate()).padStart(2, '0');
+									var mm = String(today0.getMonth() + 1).padStart(2, '0'); //January is 0!
+									var yyyy = today0.getFullYear();
+									var today1=""+mm+"/"+dd+"/"+yyyy+"";
+									
+									
+									var eedate0=C1;
+									var eedate1=date = new Date(eedate0);
+									year = date.getFullYear();
+									month = date.getMonth()+1;
+									dt = date.getDate();
+									eedatefinal=""+month+"/"+dt+"/"+year+"";
+									
+									var dateOne = new Date(yyyy, mm, dd); //Year, Month, Date  
+      							    var dateTwo = new Date(year, month, dt);
+											
+									var dateFirst = new Date(today1);
+        						 var dateSecond = new Date(eedatefinal);
+								  var timeDiff = Math.abs(dateSecond.getTime() - dateFirst.getTime());
+								 var diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24));		
+											
+									if(C5=="Approved")
+									{
+									tabCell.innerHTML ="Already Approved"	
+									}
+									else
+									{
+										tabCell.innerHTML = diffDays;
+									}
+
+									tabCell = tr.insertCell(-1);
+									tabCell.innerHTML = C5;
+									tabCell = tr.insertCell(-1);
+									
+									
+									
+									if(C5=="Approved")
+									{
+									tabCell.innerHTML ="Already Approved"	
+									}
+									else
+									{
+										
+									
+									var btn=document.createElement("INPUT");
+									btn.setAttribute("type","Button");
+									btn.setAttribute("onclick","Approve(this)");
+									btn.setAttribute("id","buttons"+rowcc+"");				
+									//btn.setAttribute("value",""+rowcc+"");
+									btn.setAttribute("value","Approve");
+									tabCell.appendChild(btn);
+									}
+									tabCell = tr.insertCell(-1);
+									
+									var btn=document.createElement("INPUT");
+									btn.setAttribute("type","Button");
+									btn.setAttribute("onclick","Delete(this)");
+									btn.setAttribute("class","fa fa-trash");
+									btn.setAttribute("id","buttons"+rowcc+"");				
+									//btn.setAttribute("value",""+rowcc+"");
+									btn.setAttribute("value","Delete");
+									tabCell.appendChild(btn);
+									
+									
+								
+	   
+	   
+	  
+	   }
+	    stopspin();
+	  });
+ 
+  }, 
+function (error) 
+{
+   console.log("Error: " + error.code);
+});
+	
+ 
+}
+function CountRows() 
+{
+	
+		 var totalRowCount = 0;
+        var rowCount = 0;
+        var table = document.getElementById("customers");
+        var rows = table.getElementsByTagName("tr")
+		for (var i = 0; i < rows.length; i++) {
+            totalRowCount++;
+            if (rows[i].getElementsByTagName("td").length > 0) {
+                rowCount++;
+            }
+        }
+        rowc=rowCount;
+}
+
+
+function Approve(x) 
+     {
+		 
+		 var rowIndex = $(x).closest('tr').index();
+		CountRows() ;
+		var ref2 = firebase.database().ref('Approvals');
+		var k1=document.getElementById("customers").rows[rowIndex].cells[3].innerHTML;
+		console.log(k1);
+		 ref2.on("value", function(snapshot) 
+				  {
+				   snapshot.forEach(userSnapshot => 
+						  {
+						   var key_p =userSnapshot.key;
+						   var dete_p =userSnapshot.val().Date1;
+						   var desi_p =userSnapshot.val().Designation;
+						   var ref_p =userSnapshot.val().Ref_Number;
+						   var sub_p =userSnapshot.val().subject;
+						   var stsatus_p =userSnapshot.val().Current_Status;
+						   
+						  if(ref_p==k1)
+						    {
+							
+							console.log(key_p);
+							
+						  firebase.database().ref('Approvals/' + key_p).set
+						  ({
+										Date1: dete_p,
+										Designation: desi_p,
+										Ref_Number : ref_p,
+										subject : sub_p,
+										Current_Status : 'Approved'
+							 }, 
+							 function(error) 
+							 {
+										if (error) 
+										{
+										  console.log("Error Occures");
+										} else 
+										{
+										 console.log("Updated");
+										 document.getElementById("customers").deleteRow(rowIndex);
+							 		    }
+							 });
+							
+					}						  
+				});
+					 
+					 
+				}, 
+				function (error) 
+				{
+				   console.log("Error: " + error.code);
+				});
+			location.reload();
+		
+	
+	}
+
+
+function Delete(x) 
+     {
+		 var rowIndex = $(x).closest('tr').index();
+		 var k1=document.getElementById("customers").rows[rowIndex].cells[3].innerHTML;
+		 var r = confirm("Are you shure to delete?");
+if (r == true) 
+{
+ var ref2 = firebase.database().ref('Approvals');
+ 
+				 ref2.on("value", function(snapshot) 
+				  {
+				   snapshot.forEach(userSnapshot => 
+						  {
+						   var key_p =userSnapshot.key;
+						   var dete_p =userSnapshot.val().Date1;
+						   var desi_p =userSnapshot.val().Designation;
+						   var ref_p =userSnapshot.val().Ref_Number;
+						   var sub_p =userSnapshot.val().subject;
+						   var stsatus_p =userSnapshot.val().Current_Status;
+						   
+						  //console.log(k1);
+						  if(ref_p==k1)
+						    {
+							
+							var adaRef = firebase.database().ref('Approvals/'+key_p);
+									adaRef.remove()
+									  .then(function() {
+										console.log("Remove succeeded."+key_p)
+									  })
+									  .catch(function(error) {
+										console.log("Remove failed: " + error.message)
+									  });
+							
+					       }						  
+				});
+					 
+					 
+				}, 
+				function (error) 
+				{
+				   console.log("Error: " + error.code);
+				});//end of ref
+
+			//location.reload();
+} else {
+ 
+}
+		 
+		 	
+	
+	}
+
+
+
+
+function stopspin()
+	{
+		
+		document.getElementById("loading").style.visibility = "hidden";
+		//document.getElementById("loading2").style.visibility = "hidden";
+	}
+	 	
+
+
+
+</script>
+
+
+
+
+
+
+</head>
+
+<body>
+<div id="mySidebar" class="sidebar">
+  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
+  <a href="add.html">HOME</a><br />
+  <a href="view.html">VIEW APPROVALS</a><br />
+  <a href="viewpending.html">PENDING APPROVALS</a><br />
+  <a href="reminder.html">REMINDER</a><br />
+  <a href="reports.html">REPORTS</a>
+</div>
+<script>
+function openNav() {
+  document.getElementById("mySidebar").style.width = "250px";
+  document.getElementById("main").style.marginLeft = "250px";
+}
+
+function closeNav() {
+  document.getElementById("mySidebar").style.width = "0";
+  document.getElementById("main").style.marginLeft= "0";
+}
+
+function downloadtable()
+{
+	var sel= document.getElementById("desi").value;
+	var sel2= document.getElementById("status").value;
+	exportTableToExcel("customers", sel2+"-"+sel);
+}
+
+function exportTableToExcel(tableID, filename)
+{
+    var downloadLink;
+    var dataType = 'application/vnd.ms-excel';
+    var tableSelect = document.getElementById(tableID);
+    var tableHTML = tableSelect.outerHTML.replace(/ /g, '%20');
+    
+    // Specify file name
+    filename = filename?filename+'.xls':'excel_data.xls';
+    
+    // Create download link element
+    downloadLink = document.createElement("a");
+    
+    document.body.appendChild(downloadLink);
+    
+    if(navigator.msSaveOrOpenBlob){
+        var blob = new Blob(['\ufeff', tableHTML], {
+            type: dataType
+        });
+        navigator.msSaveOrOpenBlob( blob, filename);
+    }else{
+        // Create a link to the file
+        downloadLink.href = 'data:' + dataType + ', ' + tableHTML;
+    
+        // Setting the file name
+        downloadLink.download = filename;
+        
+        //triggering the function
+        downloadLink.click();
+    }
+}
+
+
+
+</script>
+<div class="rcorners2" id="loading">
+
+<div><table width="43%" border="0" align="center" >
+  <tr>
+    <td width="58%" style="text-align: center">Loading .....</td>
+    <td width="42%" style="text-align: center"><img src="ZKZg.gif" width="27" height="27" alt="loading" /></td>
+  </tr>
+</table>
+</div>
+</div>
+<div style=" height:auto; width:100%" class="one-edge-shadow">
+  <table width="100%" height="125" border="0" style="height: inherit; text-align: right; font-size: 14px; font-family: Lato, sans-serif;">
+    <tr>
+      <td height="24" colspan="7" bgcolor="#ED2724">&nbsp;</td>
+    </tr>
+    <tr>
+      <td width="259" height="95"><img src="IIB-logo-small.png" width="242" height="65" onclick="openNav()"/></td>
+      <td width="30" style="text-align: center; font-family: Arial;">&nbsp;</td>
+      <td width="139" style="text-align: center; font-family: Arial;">&nbsp;</td>
+      <td width="146" style="text-align: center">&nbsp;</td>
+      <td width="154" style="text-align: center">&nbsp;</td>
+      <td width="154" style="text-align: center">&nbsp;</td>
+      <td width="379" bgcolor="#FFFFFF"><img  src="Skill _ NSDC Logo SMALL2.png" width="208" height="93" /></td>
+    </tr>
+  </table>
+</div>
+<div>&nbsp;
+  <table width="1116" border="0">
+    <tr>
+      <td width="125"><div align="right">Select Division :</div></td>
+      <td width="131">
+      <form id="desig" method="post" action="">
+      <select name="desi" id="desi" style="
+      width:100%;
+      padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  resize: vertical;">
+          <option value="PDD">PDD-SPC</option>
+	   <option value="ATA">ATA-PM</option>
+      <option value="MIS">MIS-CAO</option>
+       <option value="LD">LD-LH</option>
+        <option value="BED">BED-BEM</option>
+         <option value="MMD">MMD-SAB</option>
+          <option value="PD">PD-PM</option>
+           <option value="NSDC">NSDC-PM</option>
+            <option value="PAD">PAD-SAP</option>
+             <option value="FAD">FAD-SAF</option>
+              <option value="AAD">AAD-SAO</option>
+               <option value="AD">AD-AM</option>
+                <option value="FCD">FCD-SFO</option>
+                 <option value="FEE">FEE-FC</option>
+                  <option value="FUND">FUND-FM</option>
+                   <option value="PCD-SPM">PCD-SPM</option>
+                    <option value="PCD-SAC">PCD-SAC</option>
+                     <option value="ACD">ACD-AQC</option>
+                      <option value="ED">ED-EC</option>
+                       <option value="CCD">CCD-CH</option>
+                        <option value="PM-DB">PM-DB</option>
+                         <option value="PM-KELTRON">PM-KELTRON</option>
+                          <option value="PM-CCEK">PM-CCEK</option>
+                           <option value="PM-STC">PM-STC</option>
+                            <option value="PM-DDUGKY">PM-DDUGKY</option>
+                             <option value="RDT">RDT-RM</option> 
+                             <option value="SCD">SCD-SC</option>
+                              <option value="SAD">SAD-SAH</option>
+                               <option value="RR">RR-RC</option>
+                                <option value="HRD">HRD-HRM</option>
+                                <option value="CDD">CDD-SCD</option>
+      </select>
+    </form>
+      </td><td width="104"><div align="right">Select Status :</div></td>
+      <td width="181">
+      <form id="desig" method="post" action="">
+      <select name="desi" id="status" style="
+      width:100%;
+      padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  resize: vertical;">
+     <option value="Approved">APPROVED</option>
+     <option value="ApprovalPending">APPROVAL PENDING</option>
+     
+      </select>
+    </form>
+      </td><td width="373"><button onclick="getdata()" class="button">Filter</button></td>
+      <td width="31">&nbsp;</td>
+      <td width="31">&nbsp;</td>
+      <td width="31">&nbsp;</td>
+      <td width="31">&nbsp;</td>
+      <td width="36">&nbsp;</td>
+    </tr>
+  </table>
+</div>
+
+<table id="customers" style="width:100%;table-layout: auto; margin-top:15px;">
+  <tr style="text-align: justify; font-family: Arial;">
+    <th width="5%" height="56">SL.NO</th>
+    <th width="8%">APPROVAL REQUEST RECEIVED BY R&amp;R DIVISION ON</th>
+    <th width="8%">DESIGNATION</th> 
+    <th width="4%"><p>REFERENCE NUMBER</p></th>
+    <th width="8%">SUBJECT</th>
+    <th width="6%">AGING</th> 
+    <th width="8%">CURRENT STATUS</th>
+    <th width="5%">APPROVE</th>
+    <th width="7%">DELETE</th> 
+  </tr>
+</table>
+
+<p>
+  <input type="submit" name="button" id="button" value="Download as Excell" onclick="downloadtable()" />
+</p>
+<p>&nbsp;</p>
+</body>
+</html>

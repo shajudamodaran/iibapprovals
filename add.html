@@ -1,0 +1,765 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+
+
+<script src="https://www.gstatic.com/firebasejs/7.1.0/firebase-app.js"></script>                                    
+<script src="https://www.gstatic.com/firebasejs/7.1.0/firebase-analytics.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.1.0/firebase-database.js"></script>
+
+
+
+<script>
+  // Your web app's Firebase configuration
+  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+  var firebaseConfig = {
+    apiKey: "AIzaSyBqKKW5tmNnEK0fPGWHoz45QMSxdtpz3zs",
+    authDomain: "iib-approvals.firebaseapp.com",
+    databaseURL: "https://iib-approvals.firebaseio.com",
+    projectId: "iib-approvals",
+    storageBucket: "iib-approvals.appspot.com",
+    messagingSenderId: "1076015233476",
+    appId: "1:1076015233476:web:686109e1a6fd5db7aa0c91",
+    measurementId: "G-DER514F176"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+ 
+</script>
+
+<title>IIB WorkBench</title>
+<link href="RobotoCondensed_Regular/stylesheet.css" rel="stylesheet" type="text/css" />
+<style>
+
+body {
+  font-family: "Lato", sans-serif;
+}
+
+.sidebar {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: #CCC;
+  overflow-x: hidden;
+  transition: 0.5s;
+  padding-top: 60px;
+}
+
+.sidebar a {
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 17px;
+  color: #818181;
+  display: block;
+  transition: 0.3s;
+}
+
+.sidebar a:hover {
+  color: #f1f1f1;
+}
+
+.sidebar .closebtn {
+  position: absolute;
+  top: 0;
+  right: 25px;
+  font-size: 36px;
+  margin-left: 50px;
+}
+
+.openbtn {
+  font-size: 20px;
+  cursor: pointer;
+  background-color: #111;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+}
+
+.openbtn:hover {
+  background-color: #444;
+}
+
+#main {
+  transition: margin-left .5s;
+  padding: 16px;
+}
+
+/* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
+@media screen and (max-height: 450px) {
+  .sidebar {padding-top: 15px;}
+  .sidebar a {font-size: 18px;}
+}
+.one-edge-shadow {
+	-webkit-box-shadow: 0 8px 6px -6px  #999999;
+	   -moz-box-shadow: 0 8px 6px -6px #999999;
+	        box-shadow: 0 8px 6px -6px #999999;
+}
+.c1 {
+	text-align: right;
+}
+.t1 {
+	height: auto;
+	width: auto;
+}
+.f2 {
+	font-size: 12px;
+}
+.f2 {
+	font-size: 10px;
+}
+.f3 {
+	text-align: right;
+}
+.f3 {
+	font-size: 10px;
+}
+.f3 {
+	font-size: 11px;
+}
+.f3 {
+	font-family: Calibri;
+	font-size: 14px;
+}
+.NEW {
+	text-align: right;
+}
+#loader {
+  border: 16px solid #f3f3f3;
+  border-radius: 100%;
+  border-top: 16px solid blue;
+  border-bottom: 16px solid blue;
+  width: 10px;
+  height: 10px;
+  -webkit-animation: spin 2s linear infinite;
+  animation: spin 2s linear infinite;
+  visibility:hidden;
+}
+@-webkit-keyframes spin 
+{
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+  @keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+.loader2 {
+  border: 16px solid #f3f3f3;
+  border-radius: 50%;
+  border-top: 16px solid #3498db;
+  width: 120px;
+  height: 120px;
+  -webkit-animation: spin 2s linear infinite; /* Safari */
+  animation: spin 2s linear infinite;
+  visibility:hidden;
+}
+
+/* Safari */
+@-webkit-keyframes spin {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+.rcorners2 {
+  border-radius: 10px;
+  border: 2px solid  #E2B706;
+  background-color:#FEE57E;
+  padding: 20px;
+  width: 400px;
+  height: 34px;
+  font-family:Arial, Helvetica, sans-serif;
+  font-size:15px;
+  alignment-adjust:central;
+  position:absolute;
+  top:45%;
+  left:35%;
+ box-shadow: 0 0 40px rgba(0,0,0,0.6);
+-moz-box-shadow: 0 0 40px rgba(0,0,0,0.6);
+-webkit-box-shadow: 0 0 40px rgba(0,0,0,0.6);
+-o-box-shadow: 0 0 40px rgba(0,0,0,0.6);
+visibility:hidden;
+}
+.rcorners2 div {
+	color: #333;
+}
+.rcorners3 {
+  border-radius: 10px;
+  border: 2px solid  #E2B706;
+  background-color:#FEE57E;
+  padding: 20px;
+  width: 400px;
+  height: 20px;
+  font-family:Arial, Helvetica, sans-serif;
+  font-size:15px;
+  alignment-adjust:central;
+  position:absolute;
+  top:45%;
+  left:35%;
+ box-shadow: 0 0 40px rgba(0,0,0,0.6);
+-moz-box-shadow: 0 0 40px rgba(0,0,0,0.6);
+-webkit-box-shadow: 0 0 40px rgba(0,0,0,0.6);
+-o-box-shadow: 0 0 40px rgba(0,0,0,0.6);
+visibility:hidden;
+}
+.rcorners3 div {
+	color: #333;
+}
+
+.rcorners4 {
+  border-radius: 10px;
+  border: 2px solid  #E2B706;
+  background-color:#FEE57E;
+  padding: 20px;
+  width: 400px;
+  height: 20px;
+  font-family:Arial, Helvetica, sans-serif;
+  font-size:15px;
+  alignment-adjust:central;
+  position:absolute;
+  top:45%;
+  left:35%;
+ box-shadow: 0 0 40px rgba(0,0,0,0.6);
+-moz-box-shadow: 0 0 40px rgba(0,0,0,0.6);
+-webkit-box-shadow: 0 0 40px rgba(0,0,0,0.6);
+-o-box-shadow: 0 0 40px rgba(0,0,0,0.6);
+visibility:hidden;
+}
+.rcorners3 div {
+	color: #333;
+}
+.rcorners5 {
+  border-radius: 10px;
+  border: 2px solid  #E2B706;
+  background-color:#FEE57E;
+  padding: 20px;
+  width: 400px;
+  height: 20px;
+  font-family:Arial, Helvetica, sans-serif;
+  font-size:15px;
+  alignment-adjust:central;
+  position:absolute;
+  top:45%;
+  left:35%;
+ box-shadow: 0 0 40px rgba(0,0,0,0.6);
+-moz-box-shadow: 0 0 40px rgba(0,0,0,0.6);
+-webkit-box-shadow: 0 0 40px rgba(0,0,0,0.6);
+-o-box-shadow: 0 0 40px rgba(0,0,0,0.6);
+visibility:HIDDEN;
+}
+.rcorners3 div {
+	color: #333;
+}
+.QQ {
+	color: #F00;
+}
+.W {
+	color: #F00;
+}
+input[type=text], select, textarea, date {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  resize: vertical;
+}
+</style>
+<link href="css/stylish.css" rel="stylesheet" type="text/css" />
+<style type="text/css">
+.style44 {
+	font-size: 10px;
+	font-weight: bold;
+	color: #333;
+}
+.style45 {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	font-weight: bold;
+	color: #333333;
+}
+.f3 table tr td table {
+	color: #000000;
+}
+</style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+
+<script>
+
+var new_k=0;
+
+function openNav() 
+{
+  document.getElementById("mySidebar").style.width = "250px";
+  document.getElementById("main").style.marginLeft = "250px";
+}
+
+function closeNav() 
+{
+  document.getElementById("mySidebar").style.width = "0";
+  document.getElementById("main").style.marginLeft= "0";
+}
+
+function loads()
+{
+var database = firebase.database();
+writeUserData()
+                       var date = new Date();
+									
+	   						        var year = date.getFullYear();
+									var month = date.getMonth()+1;
+									var month2="";
+									if(month==1)
+									{
+										month2="01";
+									}
+									else if(month==2)
+									{
+										month2="02";
+									}
+									else if(month==3)
+									{
+										month2="03";
+									}
+									else if(month==4)
+									{
+										month2="04";
+									}
+									else if(month==5)
+									{
+										month2="05";
+									}
+									else if(month==6)
+									{
+										month2="06";
+									}
+									else if(month==7)
+									{
+										month2="7";
+									}
+									else if(month==8)
+									{
+										month2="08";
+									}
+									else if(month==9)
+									{
+										month2="09";
+									}
+									else
+									{
+										month2=month;
+									}
+									
+									
+									
+									var dt = date.getDate();
+									var dt2="";
+									if(dt==1)
+									{
+										dt2="01";
+									}
+									else if(dt==2)
+									{
+										dt2="02";
+									}
+									else if(dt==3)
+									{
+										dt2="03";
+									}
+									else if(dt==4)
+									{
+										dt2="04";
+									}
+									
+									else if(dt==5)
+									{
+										dt2="05";
+									}
+									
+									else if(dt==6)
+									{
+										dt2="06";
+									}
+									
+									else if(dt==7)
+									{
+										dt2="07";
+									}
+									
+									else if(dt==8)
+									{
+										dt2="08";
+									}
+									
+									else if(dt==9)
+									{
+										dt2="09";
+									}
+									else
+									{
+										dt2=dt;
+									}
+									
+									var d1=""+year+"-"+month2+"-"+dt2+"";
+									
+									
+	document.getElementById("date").value=d1;
+	
+}
+
+function addapproval()
+
+{
+ console.log("Adding Approval .....................................................");
+var flag1=0;
+ 		var ref2 = firebase.database().ref('Approvals');
+	    //document.getElementById("loading").style.visibility = "visible";
+		
+		var a1=document.getElementById("date").value;
+			
+			var a2=document.getElementById("ref").value;
+			
+			var a3=document.getElementById("sub").value;
+			
+			var a4=document.getElementById("desi").value;
+			
+			if(a2=="")
+			{
+				document.getElementById("loading").style.visibility = "hidden";
+				document.getElementById("loading3").style.visibility = "visible";
+				setTimeout(function(){document.getElementById("loading3").style.visibility = "hidden";}, 1000);
+			}
+			else if(a3=="")
+			{
+				document.getElementById("loading").style.visibility = "hidden";
+				document.getElementById("loading3").style.visibility = "visible";
+				setTimeout(function(){document.getElementById("loading3").style.visibility = "hidden";}, 1000);
+			}
+			else
+			{
+			
+				
+				if(navigator.onLine)
+				{
+					ref2.on("value", function(snapshot) 
+						  {
+						  
+							 snapshot.forEach(userSnapshot => 
+									  {
+									   var name =userSnapshot.val().Ref_Number;
+										  if(name==document.getElementById("ref").value)
+										  {
+											
+											 flag1="1";
+											  //console.log(flag1);
+											 
+										  }
+									  });
+									  
+										 
+								 
+						  }, function (error) 
+							{
+							   console.log("Error: " + error.code);
+							});
+
+				 if(flag1=="0")
+									  {
+									  console.log("Data Added");
+									  addData();
+									  document.getElementById("loading").style.visibility = "hidden";
+									  document.getElementById("loading1").style.visibility = "visible";
+									  setTimeout(function(){document.getElementById("loading1").style.visibility = "hidden";}, 1000);
+									  }
+									  else if(flag1=="1")
+									  {
+									   console.log("Data Not Added")
+									  //console.log(flag1)
+									 document.getElementById("loading").style.visibility = "hidden";
+									 document.getElementById("loading2").style.visibility = "visible";
+									  setTimeout(function(){document.getElementById("loading2").style.visibility = "hidden";}, 1000);
+									  }	
+				
+				}
+			
+			}
+}
+
+function writeUserData() 
+{
+ console.log("getting last ID .....................................................");
+ var ref2 = firebase.database().ref('Approvals');
+ 
+ ref2.on("value", function(snapshot) 
+  {
+   //console.log("Called");
+   //console.log(snapshot.val());
+// gotworkData(snapshot)
+     gotworkData(snapshot);
+	 
+	
+	 
+}, 
+function (error) 
+{
+   console.log("Error: " + error.code);
+});
+
+
+   
+}
+
+function gotworkData(snapshot)
+   {
+   
+   
+   
+   var c="";
+ 
+  	  
+	  snapshot.forEach(userSnapshot => 
+	  {
+	   var dete_p =userSnapshot.val().Date1;
+	   var desi_p =userSnapshot.val().Designation;
+	   var ref_p =userSnapshot.val().Ref_Number;
+	   var sub_p =userSnapshot.val().subject;
+	   var stsatus_p =userSnapshot.val().Current_Status;
+	   c = parseInt(userSnapshot.key);
+	   new_k=parseInt(c+1);
+	  });
+	  
+	console.log("New Id : s"+new_k);
+	
+	
+	
+  }
+  
+  function addData()
+  {
+  console.log("Calling addData .....................................................");
+ 			 var a1=document.getElementById("date").value;
+			
+			var a2=document.getElementById("ref").value;
+			
+			var a3=document.getElementById("sub").value;
+			
+			var a4=document.getElementById("desi").value;
+			
+  console.log("Called");
+  let i=0;
+  
+  var playersRef = firebase.database().ref("Approvals");
+  
+   firebase.database().ref('Approvals/' + new_k).set({
+   Date1: a1,
+   Designation: a4,
+   Ref_Number : a2,
+   subject : a3,
+   Current_Status : "ApprovalPending" 
+  });
+  
+
+  }
+
+	
+
+
+ 
+	
+  
+  </script>
+
+
+
+</head>
+
+<body onload="loads()">
+<div id="mySidebar" class="sidebar">
+  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
+  <a href="#">HOME</a><br />
+  <a href="view.html">VIEW APPROVALS</a><br />
+  <a href="viewpending.html">PENDING APPROVALS</a><br />
+  <a href="reminder.html">REMINDER</a><br />
+  <a href="reports.html">REPORTS</a>
+</div>
+<div class="rcorners2" id="loading">
+
+<div><table width="43%" border="0" align="center" >
+  <tr>
+    <td width="58%" style="text-align: center">Loading .....</td>
+    <td width="42%" style="text-align: center"><img src="ZKZg.gif" width="27" height="27" alt="loading" /></td>
+  </tr>
+</table>
+</div>
+</div>
+
+<div class="rcorners3" id="loading1">
+
+<div><table width="67%" border="0" align="center" >
+  <tr>
+    <td width="79%" style="text-align: center">Approval Added Successfully</td>
+    <td width="21%" style="text-align: center"><img src="unnamed.png" width="19" height="18" alt="tick" /></td>
+  </tr>
+</table>
+</div>
+</div>
+
+<div class="rcorners4" id="loading2">
+
+<div><table width="67%" border="0" align="center" >
+  <tr>
+    <td width="79%" style="text-align: center">Duplicate Referance Number</td>
+    <td width="21%" style="text-align: center"><img src="close-x-icon-67.png" width="15" height="15" alt="close" /></td>
+  </tr>
+</table>
+</div>
+</div>
+
+<div class="rcorners5" id="loading3">
+
+<div><table width="68%" border="0" align="center" >
+  <tr>
+    <td style="text-align: center">Please Fill the Blanks</td>
+    </tr>
+</table>
+</div>
+</div>
+
+<div style=" height: auto; width:100%" class="one-edge-shadow">
+  <table width="100%" height="132" border="0" style="height: inherit; text-align: right; font-family: 'RobotoCondensed Regular'; font-size: 14px;">
+    <tr>
+      <td height="31" colspan="7" align="left" bgcolor="#ED2724" style="text-align: center; font-family: Arial;">&nbsp;</td>
+    </tr>
+    <tr>
+      <td width="242" height="95" align="left" style="text-align: center; font-family: Arial;"><img src="IIB-logo-small.png" width="242" height="65" onclick="openNav()" /></td>
+      <td width="175" align="left" style="text-align: center">&nbsp;</td>
+      <td width="60" style="text-align: center">&nbsp;</td>
+      <td width="81" style="text-align: center">&nbsp;</td>
+      <td width="49" bgcolor="#FFFFFF"><div align="center"></div></td>
+      <td width="49" bgcolor="#FFFFFF"><div align="center"></div></td>
+      <td width="400" bgcolor="#FFFFFF"><img src="skill.png" width="208" height="93" /></td>
+    </tr>
+  </table>
+</div>
+<table width="100%" height="542" border="0">
+  <tr>
+    <td width="182" height="38">&nbsp;</td>
+    <td width="10">&nbsp;</td>
+    <td width="470">&nbsp;</td>
+    <td width="160">&nbsp;</td>
+    <td width="160">&nbsp;</td>
+    <td width="160">&nbsp;</td>
+    <td width="1">&nbsp;</td>
+  </tr>
+  <tr>
+    <td height="55" class="f3">Date : </td>
+    <td>&nbsp;</td>
+    <td><form id="form1" name="form1" method="post" action="">
+      <span class="a70">
+      <input name="date" type="date" class="a70" id="date" style="
+  height:30px;
+  padding-left:10px;
+  padding-right:10px;" />
+      </span>
+    </form></td>
+    <td>&nbsp;</td>
+    <td colspan="3">&nbsp;</td>
+  </tr>
+  <tr>
+    <td height="54" class="f3">Reference Number :</td>
+    <td>&nbsp;</td>
+    <td><label for="ref"></label>
+      <input type="text" id="ref" size="50" style="
+  height:30px;
+  padding-left:10px;
+  padding-right:10px;" /></td>
+    <td height="54" class="f3">&nbsp;</td>
+    <td colspan="3">&nbsp;</td>
+  </tr>
+  <tr>
+    <td height="164" class="f3">Subject :</td>
+    <td>&nbsp;</td>
+    <td><form id="form2" name="form2" method="post" action="">
+      <textarea id="sub" cols="50" rows="8" style=""></textarea>
+    </form></td>
+    <td>&nbsp;</td>
+    <td colspan="3">&nbsp;</td>
+  </tr>
+  <tr>
+    <td height="50" class="f3">Designation :</td>
+    <td>&nbsp;</td>
+    <td><form id="desig" method="post" action="">
+      <select name="desi" id="desi" style="
+  height:50px;">
+      
+     <option value="PDD">PDD-SPC</option>
+	   <option value="ATA">ATA-PM</option>
+      <option value="MIS">MIS-CAO</option>
+       <option value="LD">LD-LH</option>
+        <option value="BED">BED-BEM</option>
+         <option value="MMD">MMD-SAB</option>
+          <option value="PD">PD-PM</option>
+           <option value="NSDC">NSDC-PM</option>
+            <option value="PAD">PAD-SAP</option>
+             <option value="FAD">FAD-SAF</option>
+              <option value="AAD">AAD-SAO</option>
+               <option value="AD">AD-AM</option>
+                <option value="FCD">FCD-SFO</option>
+                 <option value="FEE">FEE-FC</option>
+                  <option value="FUND">FUND-FM</option>
+                   <option value="PCD-SPM">PCD-SPM</option>
+                    <option value="PCD-SAC">PCD-SAC</option>
+                     <option value="ACD">ACD-AQC</option>
+                      <option value="ED">ED-EC</option>
+                       <option value="CCD">CCD-CH</option>
+                        <option value="PM-DB">PM-DB</option>
+                         <option value="PM-KELTRON">PM-KELTRON</option>
+                          <option value="PM-CCEK">PM-CCEK</option>
+                           <option value="PM-STC">PM-STC</option>
+                            <option value="PM-DDUGKY">PM-DDUGKY</option>
+                             <option value="RDT">RDT-RM</option> 
+                             <option value="SCD">SCD-SC</option>
+                              <option value="SAD">SAD-SAH</option>
+                               <option value="RR">RR-RC</option>
+                                <option value="HRD">HRD-HRM</option>
+                                <option value="CCD">CDD-SCD</option>
+                                 
+</select>
+    </form></td>
+    <td>&nbsp;</td>
+    <td colspan="3">&nbsp;</td>
+  </tr>
+  <tr>
+    <td height="33" class="f3">&nbsp;</td>
+    <td class="x">&nbsp;</td>
+    <td align="right" class="x">
+      <button onclick="addapproval()" class="button_add">Add Approval</button>
+    </td>
+    <td>&nbsp;</td>
+    <td colspan="3">&nbsp;</td>
+  </tr>
+  <tr>
+    <td height="20" class="f3">&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td colspan="3">&nbsp;</td>
+  </tr>
+  <tr>
+    <td height="60" colspan="7" bgcolor="#CCCCCC" class="f3">&nbsp;</td>
+  </tr>
+</table>
+
+
+
+</body>
+</html>
