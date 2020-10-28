@@ -1,0 +1,83 @@
+@charset "utf-8";
+/* CSS Document */
+
+.button {
+ color: #fff !important;
+text-transform: uppercase;
+text-decoration: none;
+background: #008AD2;
+padding: 15px;
+margin-left:15px;
+border-radius: 5px;
+display: inline-block;
+border: none;
+transition: all 0.4s ease 0s;
+}
+
+.button:hover 
+{
+	background: #D73525;
+letter-spacing: 1px;
+-webkit-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
+-moz-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
+box-shadow: 5px 40px -10px rgba(0,0,0,0.57);
+transition: all 0.4s ease 0s;
+	
+	}
+	
+	
+	#customers {
+	font-family: Arial;
+	border-collapse: collapse;
+	width: 100%;
+	text-align: center;
+	font-size: 12px;
+	
+}
+
+#customers td, #customers th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+#customers td{
+  border: 1px solid #ddd;
+  padding: 8px;
+  font-size:11px;
+  word-wrap: break-word;
+}
+#customers tr:nth-child(even){background-color: #f2f2f2;}
+
+#customers tr:hover {background-color: #ddd;}
+
+#customers th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #007dd2;
+  color: white;
+  text-align:center;
+}
+
+.button_add{
+ color: #fff !important;
+text-transform: uppercase;
+text-decoration: none;
+background: #008AD2;
+padding: 15px;
+margin-top:15px;
+border-radius: 5px;
+display: inline-block;
+border: none;
+transition: all 0.4s ease 0s;
+}
+
+.button_add:hover 
+{
+	background: #D73525;
+letter-spacing: 1px;
+-webkit-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
+-moz-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
+box-shadow: 5px 40px -10px rgba(0,0,0,0.57);
+transition: all 0.4s ease 0s;
+	
+	}
