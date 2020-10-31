@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 
 
 
@@ -419,14 +419,14 @@ writeUserData()
 function addapproval()
 
 {
- console.log("Adding Approval .....................................................");
+ //console.log("Adding Approval .....................................................");
 var flag1=0;
  		var ref2 = firebase.database().ref('Approvals');
-	    //document.getElementById("loading").style.visibility = "visible";
+	    document.getElementById("loading").style.visibility = "visible";
 		
 		var a1=document.getElementById("date").value;
 			
-			var a2=document.getElementById("ref").value;
+			var a2=document.getElementById("ref").value.trim();
 			
 			var a3=document.getElementById("sub").value;
 			
@@ -455,15 +455,18 @@ var flag1=0;
 						  
 							 snapshot.forEach(userSnapshot => 
 									  {
-									   var name =userSnapshot.val().Ref_Number;
-										  if(name==document.getElementById("ref").value)
+									   var name =userSnapshot.val().Ref_Number.trim();
+									   //console.log(name+"::::"+document.getElementById("ref").value.trim())
+										  if(name==document.getElementById("ref").value.trim())
 										  {
 											
-											 flag1="1";
-											  //console.log(flag1);
+											 flag1=1;
+											 
 											 
 										  }
 									  });
+									  
+									  
 									  
 										 
 								 
@@ -471,23 +474,21 @@ var flag1=0;
 							{
 							   console.log("Error: " + error.code);
 							});
-
-				 if(flag1=="0")
+							
+							if(flag1==0)
 									  {
-									  console.log("Data Added");
-									  addData();
-									  document.getElementById("loading").style.visibility = "hidden";
-									  document.getElementById("loading1").style.visibility = "visible";
-									  setTimeout(function(){document.getElementById("loading1").style.visibility = "hidden";}, 1000);
+									 console.log("adding.................");
+									  addData("1");
+									  
 									  }
-									  else if(flag1=="1")
+									  else
 									  {
-									   console.log("Data Not Added")
-									  //console.log(flag1)
-									 document.getElementById("loading").style.visibility = "hidden";
-									 document.getElementById("loading2").style.visibility = "visible";
-									  setTimeout(function(){document.getElementById("loading2").style.visibility = "hidden";}, 1000);
+										  
+										  addData("2");
+									  
 									  }	
+
+				
 				
 				}
 			
@@ -496,7 +497,7 @@ var flag1=0;
 
 function writeUserData() 
 {
- console.log("getting last ID .....................................................");
+ //console.log("getting last ID .....................................................");
  var ref2 = firebase.database().ref('Approvals');
  
  ref2.on("value", function(snapshot) 
@@ -537,36 +538,62 @@ function gotworkData(snapshot)
 	   new_k=parseInt(c+1);
 	  });
 	  
-	console.log("New Id : s"+new_k);
+	//console.log("New Id : s"+new_k);
 	
 	
 	
   }
   
-  function addData()
+  function addData(action)
   {
-  console.log("Calling addData .....................................................");
- 			 var a1=document.getElementById("date").value;
-			
-			var a2=document.getElementById("ref").value;
-			
-			var a3=document.getElementById("sub").value;
-			
-			var a4=document.getElementById("desi").value;
-			
-  console.log("Called");
-  let i=0;
+	  
+	  if(action=="1")
+	  {
+		  	  
+				console.log("Calling addData .....................................................");
+				var a1=document.getElementById("date").value;		
+				var a2=document.getElementById("ref").value.trim();			
+				var a3=document.getElementById("sub").value;			
+				var a4=document.getElementById("desi").value;			
+				  //console.log("Called");
+				  let i=0;
+				  var playersRef = firebase.database().ref("Approvals");
+				   firebase.database().ref('Approvals/' + new_k).set({
+				   Date1: a1,
+				   Designation: a4,
+				   Ref_Number : a2,
+				   subject : a3,
+				   Current_Status : "ApprovalPending" 
+				  });
+				  
+				   console.log("Data Added");
+				   
+					setTimeout(function()
+					{
+						
+						  document.getElementById("loading").style.visibility = "hidden";
+													  document.getElementById("loading1").style.visibility = "visible";
+													   setTimeout(function(){document.getElementById("loading1").style.visibility = "hidden";}, 1000);
+						
+						
+						}, 2000);
+													
+													 
   
-  var playersRef = firebase.database().ref("Approvals");
-  
-   firebase.database().ref('Approvals/' + new_k).set({
-   Date1: a1,
-   Designation: a4,
-   Ref_Number : a2,
-   subject : a3,
-   Current_Status : "ApprovalPending" 
-  });
-  
+	  }
+	  else
+	  {
+		   console.log("not adding.................");
+			console.log("Duplicate founded");
+		   
+									   document.getElementById("loading").style.visibility = "hidden";
+									 document.getElementById("loading2").style.visibility = "visible";
+									  setTimeout(function(){document.getElementById("loading2").style.visibility = "hidden";}, 1000);
+	  }
+	  
+	  
+	  
+
 
   }
 
